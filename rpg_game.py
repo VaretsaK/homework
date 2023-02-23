@@ -1,11 +1,3 @@
-warrior = {"char": "warrior", "str": 20, "hp": 100}
-mage = {"char": "mage", "str": 50, "hp": 50}
-archer = {"char": "archer", "str": 40, "hp": 70}
-
-player1 = []
-player2 = []
-
-
 def choosing_characters(name, player):
     while len(player) < 5:
         choice = input(f"{name}, in what turns are your characters going to fight (warrior, mage, archer) ?: ")
@@ -90,11 +82,19 @@ def result(one, two):
         print("There are no winners! Everybody is dead!")
 
 
-name1 = input("Player one, what is your name? ")
-choosing_characters(name1, player1)
+if __name__ == "__main__":
+    warrior = {"char": "warrior", "str": 20, "hp": 100}
+    mage = {"char": "mage", "str": 50, "hp": 50}
+    archer = {"char": "archer", "str": 40, "hp": 70}
 
-name2 = input("\nPlayer two, what is your name? ")
-choosing_characters(name2, player2)
+    player1 = []
+    player2 = []
 
-rules_and_fight()
-result(player1, player2)
+    name1 = input("Player one, what is your name? ")
+    choosing_characters(name1, player1)
+
+    name2 = input("\nPlayer two, what is your name? ")
+    choosing_characters(name2, player2)
+
+    rules_and_fight()
+    result(player1, player2)
