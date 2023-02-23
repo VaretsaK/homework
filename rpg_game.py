@@ -29,26 +29,26 @@ def fight():
             player1.pop(0)
             print(f"{name1}'s soldier is gone")
             if player2[0]["char"] == mage["char"]:
-                # player2[0]["hp"] = mage["hp"]
+                player2[0]["hp"] = mage["hp"]
                 player2[0]["str"] = mage["str"]
             elif player2[0]["char"] == warrior["char"]:
-                # player2[0]["hp"] = warrior["hp"]
+                player2[0]["hp"] = warrior["hp"]
                 player2[0]["str"] = warrior["str"]
             elif player2[0]["char"] == archer["char"]:
-                # player2[0]["hp"] = archer["hp"]
+                player2[0]["hp"] = archer["hp"]
                 player2[0]["str"] = archer["str"]
         elif player2[0]["hp"] <= 0:
             c += 1
             player2.pop(0)
             print(f"{name2}'s soldier is gone")
             if player1[0]["char"] == mage["char"]:
-                # player1[0]["hp"] = mage["hp"]
+                player1[0]["hp"] = mage["hp"]
                 player1[0]["str"] = mage["str"]
             elif player1[0]["char"] == warrior["char"]:
-                # player1[0]["hp"] = warrior["hp"]
+                player1[0]["hp"] = warrior["hp"]
                 player1[0]["str"] = warrior["str"]
             elif player1[0]["char"] == archer["char"]:
-                # player1[0]["hp"] = archer["hp"]
+                player1[0]["hp"] = archer["hp"]
                 player1[0]["str"] = archer["str"]
 
 
