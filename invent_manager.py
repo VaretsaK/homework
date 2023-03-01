@@ -5,12 +5,12 @@ def add_store_item():
     item_name = input("Item name: ").capitalize()
     item_description = input("Item description: ")
     item_quantity = int(input("Item quantity: "))
-    store_items[item_name] = [item_description, item_quantity]
+    store_items[item_name] = {"description": item_description, "items": item_quantity}
 
 
 def view_store_items():
     for name, descr in store_items.items():
-        print(f"{name:^10}: {descr[0]:>20} - {descr[1]} item(s)")
+        print(f"{name:^10}: {descr['description']:>20} - {descr['items']} item(s)")
 
 
 def remove_store_item():
@@ -23,14 +23,14 @@ def update_store_item():
     view_store_items()
     item_to_update = input("What item do you want to update? ")
     new_quantity = int(input("Enter the new quantity: "))
-    store_items[item_to_update][1] = new_quantity
+    store_items[item_to_update]["items"] = new_quantity
 
 
 def search_inventory():
     search_request = input("Enter a search term (either an item name or description): ")
     for name, descr in store_items.items():
-        if search_request == name or search_request in descr[0]:
-            print(f"{name:^10}: {descr[0]:>20} - {descr[1]} item(s)")
+        if search_request == name or search_request in descr["description"]:
+            print(f"{name:^10}: {descr['description']:>20} - {descr['items']} item(s)")
 
 
 if __name__ == "__main__":
@@ -46,17 +46,17 @@ if __name__ == "__main__":
         - Search for items in the inventory
         - Quit the program
         >>> """)
-
-        if menu_choice[0].lower() == "v":
+        choice = menu_choice[0].lower()
+        if choice == "v":
             view_store_items()
             time.sleep(5)
-        elif menu_choice[0].lower() == "a":
+        elif choice == "a":
             add_store_item()
-        elif menu_choice[0].lower() == "r":
+        elif choice == "r":
             remove_store_item()
-        elif menu_choice[0].lower() == "u":
+        elif choice == "u":
             update_store_item()
-        elif menu_choice[0].lower() == "s":
+        elif choice == "s":
             search_inventory()
-        elif menu_choice[0].lower() == "q":
+        elif choice == "q":
             break
