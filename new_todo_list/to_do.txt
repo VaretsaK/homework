@@ -1,0 +1,7 @@
+One
+Two
+[9mThree[0m
+Four
+Five
+[9mSix[0m
+Seven
