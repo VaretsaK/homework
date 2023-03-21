@@ -15,7 +15,7 @@ def read_n_write(our_file):
 
 if __name__ == "__main__":
     try:
-        file = open("divisor.txt", "r+")
+        file = open("../Files/divisor.txt", "r+")
         read_n_write(file)
     except (FileNotFoundError, PermissionError) as errors:
         print(errors)

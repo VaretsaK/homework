@@ -1,6 +1,6 @@
 
 def read(tasks):
-    todo = open("to_do.txt", "r")
+    todo = open("../Files/to_do.txt", "r")
     todo.seek(0)
     for task in todo:
         tasks.append(task[:-1])
@@ -8,7 +8,7 @@ def read(tasks):
 
 
 def write(tasks):
-    todo = open("to_do.txt", "w")
+    todo = open("../Files/to_do.txt", "w")
     for item in tasks:
         todo.write(f"{item}\n")
     todo.close()
