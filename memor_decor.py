@@ -6,10 +6,8 @@ def mem_decor(func):
         keys = (tuple(args) + tuple(kwargs.keys()))
         if keys in result:
             return result[keys]
-        else:
-            result[keys] = func(*args, **kwargs)
+        result[keys] = func(*args, **kwargs)
         return result[keys]
-
     return memorize_this
 
 
