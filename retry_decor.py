@@ -9,25 +9,24 @@ def retry_maker(max_retries, exc):
             while counter < max_retries:
                 try:
                     return func(*args, **kwargs)
-                except exc:
+                except Exception as error:
                     counter += 1
-                    print(f"Mistake number {counter}")
-                    return
-            print(exc.__name__)
+                    return f"{error} - Mistake number {counter}"
+            raise exc
         return decor
     return retry
 
 
-@retry_maker(2, ZeroDivisionError)
+@retry_maker(3, ZeroDivisionError)
 def mult(a, b):
-    print(a / b)
+    return a / b
 
 
 if __name__ == "__main__":
-    mult(15, 1)
-    mult(15, 3)
-    mult(15, 0)
-    mult(15, 3)
-    mult(15, 5)
-    mult(15, 0)
-    mult(15, 3)
+    print(mult(15, 1))
+    print(mult(15, 3))
+    print(mult(15, 0))
+    print(mult(15, 0))
+    print(mult(15, 5))
+    print(mult(15, 0))
+    print(mult(15, 3))
