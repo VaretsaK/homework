@@ -31,8 +31,10 @@ def update_store_item():
     try:
         new_quantity = int(input("Enter the new quantity: "))
         store_items[item_to_update]["items"] = new_quantity
-    except (KeyError, ValueError) as errors:
-        print(f"{errors} Try again!")
+    except KeyError as e:
+        print(f"{e} There is no such item! Try again!")
+    except ValueError as e:
+        print(f"{e} Try again!")
 
 
 def search_inventory():
@@ -62,7 +64,7 @@ if __name__ == "__main__":
             choice = "a"
         finally:
             print("Loading...")
-            time.sleep(2)
+            time.sleep(0)
 
         if choice == "v":
             view_store_items()
