@@ -1,5 +1,5 @@
 
-def debug_maker(print_output):
+def debug_maker(print_input, print_output):
 
     def debug(func):
         res = []
@@ -8,17 +8,16 @@ def debug_maker(print_output):
         def simple(*args, **kwargs):
             nonlocal res, count
             res.append(func(*args, **kwargs))
-            print(f"Input: {(tuple(args) + tuple(kwargs.keys()))}")
+            if print_input:
+                print(f"Input: {(tuple(args) + tuple(kwargs.keys()))}")
             if print_output:
                 print(res[count])
             count += 1
-        # Ти повинен виконувати функцію у будь-якому випадку, просто ти
-        # повинен записувати результат окремо і виводити лише якщо print_output вказано
         return simple
     return debug
 
 
-@debug_maker(print_output=True)
+@debug_maker(print_input=True, print_output=True)
 def mult(a, b):
     return a * b
 
