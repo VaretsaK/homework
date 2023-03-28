@@ -11,7 +11,7 @@ class FibonIt:
         next_num = self.first + self.second
         if next_num >= self.num:
             raise StopIteration
-        self.first, self.second = self.second, self.first + self.second
+        self.first, self.second = self.second, next_num
         return next_num
 
 
