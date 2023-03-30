@@ -4,8 +4,11 @@ import time
 def add_store_item():
     item_name = input("Item name: ").capitalize()
     item_description = input("Item description: ")
-    item_quantity = int(input("Item quantity: "))
-    store_items[item_name] = {"description": item_description, "items": item_quantity}
+    try:
+        item_quantity = int(input("Item quantity: "))
+        store_items[item_name] = {"description": item_description, "items": item_quantity}
+    except ValueError as error:
+        print(error)
 
 
 def view_store_items():
@@ -16,14 +19,22 @@ def view_store_items():
 def remove_store_item():
     view_store_items()
     item_to_remove = input("What item do you want to remove? ")
-    store_items.pop(item_to_remove)
+    try:
+        store_items.pop(item_to_remove)
+    except KeyError:
+        print("Wrong item!")
 
 
 def update_store_item():
     view_store_items()
     item_to_update = input("What item do you want to update? ")
-    new_quantity = int(input("Enter the new quantity: "))
-    store_items[item_to_update]["items"] = new_quantity
+    try:
+        new_quantity = int(input("Enter the new quantity: "))
+        store_items[item_to_update]["items"] = new_quantity
+    except KeyError as e:
+        print(f"{e} There is no such item! Try again!")
+    except ValueError as e:
+        print(f"{e} Try again!")
 
 
 def search_inventory():
@@ -46,7 +57,15 @@ if __name__ == "__main__":
         - Search for items in the inventory
         - Quit the program
         >>> """)
-        choice = menu_choice[0].lower()
+        try:
+            choice = menu_choice[0].lower()
+        except IndexError:
+            print("Wrong input.\n- Add items to the inventory ")
+            choice = "a"
+        finally:
+            print("Loading...")
+            time.sleep(0)
+
         if choice == "v":
             view_store_items()
             time.sleep(5)
