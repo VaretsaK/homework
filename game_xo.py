@@ -25,16 +25,14 @@ class XsOsGame:
         while True:
             self.view()
             print(f"Player {self.__current_player}, your move!")
-            row = int(input("Enter the row (1, 2, 3): "))
-            column = int(input("Enter the column (1, 2, 3): "))
-            if self.__game_field[row - 1][column - 1] not in "XO":
-                self.__game_field[row - 1][column - 1] = self.__current_player
-                self.__moves_count += 1  # for a tie's check up
-                self.winner_columns()
-                self.winner_rows()
-                self.winner_diag()
-                self.tie()
-                self.change_player()
+            row = input("Enter the row (1, 2, 3): ")
+            column = input("Enter the column (1, 2, 3): ")
+            if row in ["1", "2", "3"] and column in ["1", "2", "3"]:
+                if self.__game_field[int(row) - 1][int(column) - 1] not in "XO":
+                    self.__game_field[int(row) - 1][int(column) - 1] = self.__current_player
+                    self.__moves_count += 1  # for a tie's check up
+                    self.winner()
+                    self.change_player()
 
     def repeat(self):
         # if we want to take another round
@@ -43,7 +41,8 @@ class XsOsGame:
         for row in range(3):
             self.__game_field.append(["-", "-", "-"])
 
-    def winner_columns(self):
+    def winner(self):
+        start = 0
         # looking for a winner through columns
         for col in self.__game_field:
             res = 0
@@ -55,9 +54,7 @@ class XsOsGame:
                 self.view()
                 self.exitt()
 
-    def winner_rows(self):
         # looking for a winner through rows
-        start = 0
         while start < 3:
             res = 0
             for col in self.__game_field:
@@ -71,7 +68,6 @@ class XsOsGame:
                 self.view()
                 self.exitt()
 
-    def winner_diag(self):
         # looking for a winner through diagonals
         if self.__game_field[0][0] == self.__game_field[1][1] == self.__game_field[2][2] == self.__current_player:
             print(f"Player {self.__current_player} has won!")
@@ -82,7 +78,6 @@ class XsOsGame:
             self.view()
             self.exitt()
 
-    def tie(self):
         # in case of a tie
         if self.__moves_count == 9:
             print("It's a TIE!")
